@@ -5,6 +5,19 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
 `
 
+const Text = styled.p`
+  font-size: 20px;
+  color: black;
+`
+
+function Button() {
+  return <button>Cadastrar</button>
+}
+
 export default function Home() {
-  return <Title>My page</Title>
+  return <div>
+  <Title>My page</Title>
+  <Text>Bla bla</Text>
+  <Button/>
+  </div> 
 }
