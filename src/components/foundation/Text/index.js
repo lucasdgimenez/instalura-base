@@ -1,15 +1,22 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, {css} from "styled-components"
 
+export const TextStyleVariantsMap = {
+  paragraph1: css`
+    font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
+    font-weight: ${({theme}) => theme.typographyVariants.paragraph1.fontWeight};
+    line-height: ${({theme}) => theme.typographyVariants.paragraph1.lineHeight};
+  `,
+  smallestException: css`
+    font-size: ${({ theme }) => theme.typographyVariants.smallestException.fontSize};
+    font-weight:  ${({theme}) => theme.typographyVariants.smallestException.fontWeight};
+    line-height: ${({theme}) => theme.typographyVariants.smallestException.lineHeight};
+  `
+} 
+
 const TextBase = styled.span`
-  ${function(props) {
-    if(props.variant === 'smallestException')
-    return css`
-      font-size: ${({ theme }) => theme.typographyVariants.smallestException.fontSize};
-      font-weight:  ${({theme}) => theme.typographyVariants.smallestException.fontWeight};
-      line-height: ${({theme}) => theme.typographyVariants.smallestException.lineHeight};
-    `
-  }}
+  ${(props) => TextStyleVariantsMap[props.variant]}
 `
 
 export default function Text({tag, variant, children}) {
@@ -23,6 +30,12 @@ export default function Text({tag, variant, children}) {
   )
 }
 
+Text.propTypes = {
+  tag: PropTypes.string.isRequired,
+  variant: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
+}
+//descricao das propriedades padrao, caso nao for passado nada em "as"
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1'
