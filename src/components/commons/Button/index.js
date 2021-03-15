@@ -1,8 +1,9 @@
-import styled, {css} from "styled-components"
-import get from 'lodash/get'
-import { TextStyleVariantsMap } from "../../foundation/Text";
-import { breakpointsMedia } from "../../../thema/utils/breakpointsMedia";
-import { propToStyle } from "../../../thema/utils/propToStyle"
+/* eslint-disable func-names */
+import styled, { css } from 'styled-components';
+import get from 'lodash/get';
+import { TextStyleVariantsMap } from '../../foundation/Text';
+import { breakpointsMedia } from '../../../thema/utils/breakpointsMedia';
+import { propToStyle } from '../../../thema/utils/propToStyle';
 
 const ButtonGhost = css`
   color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
@@ -11,11 +12,11 @@ const ButtonGhost = css`
 
 const ButtonDefault = css`
   color: white;
-  background-color: ${function(props) {
-    return get(props.theme, `colors.${props.variant}.color`)
+  background-color: ${function (props) {
+    return get(props.theme, `colors.${props.variant}.color`);
   }};
-  color: ${function(props) {
-    return get(props.theme, `colors.${props.variant}.contrastText`)
+  color: ${function (props) {
+    return get(props.theme, `colors.${props.variant}.contrastText`);
   }};
 `;
 
@@ -27,14 +28,14 @@ export const Button = styled.button`
   font-weight: bold;
   border-radius: 8px;
   ${TextStyleVariantsMap.smallestException}
-  ${function(props) {
-      if(props.ghost) {
-        return ButtonGhost;
-      } 
-        return ButtonDefault;
-    }}
+  ${function (props) {
+    if (props.ghost) {
+      return ButtonGhost;
+    }
+    return ButtonDefault;
+  }}
   transition: opacity ${({ theme }) => theme.transition};
-  border-radius: ${( props ) => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadius};
   &:hover,
   &:focus {
     opacity: .5;
@@ -45,7 +46,7 @@ export const Button = styled.button`
     `,
     md: css`
       ${TextStyleVariantsMap.paragraph1}
-    `
+    `,
   })}
   ${propToStyle('margin')}
   ${propToStyle('display')}

@@ -1,52 +1,53 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled, {css} from "styled-components"
-import { propToStyle } from "../../../thema/utils/propToStyle"
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
+import { propToStyle } from '../../../thema/utils/propToStyle';
 
 export const TextStyleVariantsMap = {
   paragraph1: css`
     font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
-    font-weight: ${({theme}) => theme.typographyVariants.paragraph1.fontWeight};
-    line-height: ${({theme}) => theme.typographyVariants.paragraph1.lineHeight};
+    font-weight: ${({ theme }) => theme.typographyVariants.paragraph1.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.paragraph1.lineHeight};
   `,
   smallestException: css`
     font-size: ${({ theme }) => theme.typographyVariants.smallestException.fontSize};
-    font-weight:  ${({theme}) => theme.typographyVariants.smallestException.fontWeight};
-    line-height: ${({theme}) => theme.typographyVariants.smallestException.lineHeight};
-  `
-} 
-
-
+    font-weight:  ${({ theme }) => theme.typographyVariants.smallestException.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.smallestException.lineHeight};
+  `,
+};
 
 const TextBase = styled.span`
   ${(props) => TextStyleVariantsMap[props.variant]}
   ${propToStyle('textAlign')}
-  /*${function(props) {
+  /*${function (props) {
     return {
       textAlign: props.textAlign,
-    }
+    };
   }}*/
-`
+`;
 
-export default function Text({tag, variant, children, ...props}) {
+export default function Text({
+  tag, variant, children, ...props
+}) {
   return (
     <TextBase
       as={tag}
       variant={variant}
       {...props}
     >
-    {children}
-  </TextBase>
-  )
+      {children}
+    </TextBase>
+  );
 }
 
 Text.propTypes = {
-  tag: PropTypes.string.isRequired,
+  tag: PropTypes.string,
   variant: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
-}
-//descricao das propriedades padrao, caso nao for passado nada em "as"
+  children: PropTypes.node.isRequired,
+};
+// descricao das propriedades padrao, caso nao for passado nada em "as"
 Text.defaultProps = {
   tag: 'span',
-  variant: 'paragraph1'
-}
+  variant: 'paragraph1',
+};

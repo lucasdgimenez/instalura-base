@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import {breakpointsMedia} from '../../../../thema/utils/breakpointsMedia';
-import {TextStyleVariantsMap} from "../../../foundation/Text"
+import { breakpointsMedia } from '../../../../thema/utils/breakpointsMedia';
+import { TextStyleVariantsMap } from '../../../foundation/Text';
 
 export const MenuWrapper = styled.nav`
   font-family: 'Rubik', sans-serif;
@@ -110,4 +110,3 @@ MenuWrapper.RightSide = styled.div`
     `,
   })}
 `;
-

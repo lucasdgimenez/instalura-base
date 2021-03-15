@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import {propToStyle} from "../../../../thema/utils/propToStyle"
+import styled from 'styled-components';
+import { propToStyle } from '../../../../thema/utils/propToStyle';
 
 export const Box = styled.div`
   ${propToStyle('display')}
@@ -11,4 +11,4 @@ export const Box = styled.div`
   ${propToStyle('backgroundRepeat')}
   ${propToStyle('backgroundRepeat')}
   ${propToStyle('backgroundPosition')}
-`
+`;
