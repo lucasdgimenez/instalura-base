@@ -48,7 +48,7 @@ MenuWrapper.LeftSide = styled.div`
   })}
 `;
 
-MenuWrapper.CentralSide = styled.div`
+MenuWrapper.CenterSide = styled.div`
   padding: 0;
   margin: 0;
   order: 3;
