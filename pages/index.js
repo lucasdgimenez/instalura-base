@@ -24,15 +24,18 @@ export default function Home() {
         isOpen={isModalOpen}
         onClose={()=> {
           setIsModalOpen(false)
-        }}>
-          {(propsDoModal) => {
-            <Box
-              backgroundColor="white"
-              {...propsDoModal}
-            >
+        }}
+      >
+        {(propsDoModal)=> (
+          <Box
+            backgroundColor="white"
+            {...propsDoModal}
+          >
+            <div>
               Nosso conteudo do modal
-            </Box>
-          }}
+            </div>
+          </Box>
+        )}
       </Modal>
       <Menu />
 
