@@ -6,9 +6,10 @@ import Text from '../src/components/foundation/Text';
 import { Grid } from '../src/components/foundation/layout/Grid';
 import { Box } from '../src/components/foundation/layout/Box';
 import Modal from '../src/components/commons/Modal';
+import FormCadastro from '../src/components/patterns/FormCadastro';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(true)
 
   return (
     <Box
@@ -27,14 +28,15 @@ export default function Home() {
         }}
       >
         {(propsDoModal)=> (
-          <Box
+          <FormCadastro propsDoModal={propsDoModal}/>
+          /*<Box
             backgroundColor="white"
             {...propsDoModal}
           >
             <div>
               Nosso conteudo do modal
             </div>
-          </Box>
+          </Box>*/
         )}
       </Modal>
       <Menu />
