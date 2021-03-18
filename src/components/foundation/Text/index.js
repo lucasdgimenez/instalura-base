@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { propToStyle } from '../../../thema/utils/propToStyle';
+import { breakpointsMedia } from '../../../thema/utils/breakpointsMedia';
+import { get } from 'lodash';
 
 export const TextStyleVariantsMap = {
   paragraph1: css`
@@ -15,16 +17,30 @@ export const TextStyleVariantsMap = {
     font-weight:  ${({ theme }) => theme.typographyVariants.smallestException.fontWeight};
     line-height: ${({ theme }) => theme.typographyVariants.smallestException.lineHeight};
   `,
+  title: css`
+    ${({ theme }) => css`
+      font-size: ${theme.typographyVariants.titleXS.fontSize};
+      font-weight: ${theme.typographyVariants.titleXS.fontWeight};
+      line-height: ${theme.typographyVariants.titleXS.lineHeight};
+    `}
+    ${breakpointsMedia({
+    md: css`
+        ${({ theme }) => css`
+          font-size: ${theme.typographyVariants.title.fontSize};
+          font-weight: ${theme.typographyVariants.title.fontWeight};
+          line-height: ${theme.typographyVariants.title.lineHeight};
+        `}
+      `,
+  })}
+  `,
 };
 
 const TextBase = styled.span`
   ${(props) => TextStyleVariantsMap[props.variant]}
+  color: ${(props) => get(props.theme, `colors.${props.color}.color`)};
   ${propToStyle('textAlign')}
-  /*${function (props) {
-    return {
-      textAlign: props.textAlign,
-    };
-  }}*/
+  ${propToStyle('marginBottom')}
+  ${propToStyle('margin')}  
 `;
 
 export default function Text({
@@ -44,10 +60,11 @@ export default function Text({
 Text.propTypes = {
   tag: PropTypes.string,
   variant: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 // descricao das propriedades padrao, caso nao for passado nada em "as"
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };
