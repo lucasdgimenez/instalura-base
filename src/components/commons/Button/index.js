@@ -53,7 +53,7 @@ export const Button = styled.button`
     cursor: not-allowed;
     opacity: .2;
   }
-  ${({fullWidth}) => fullWidth && css`
+  ${({ fullWidth }) => fullWidth && css`
     width: 100%;
   `}
 

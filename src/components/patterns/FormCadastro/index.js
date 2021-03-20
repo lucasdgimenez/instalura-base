@@ -1,31 +1,73 @@
-import React, { useState } from "react"
-import { Button } from "../../commons/Button";
-import TextField from "../../forms/TextField";
-import { Box } from "../../foundation/layout/Box";
-import { Grid } from "../../foundation/layout/Grid";
-import Text from "../../foundation/Text";
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
+import { Lottie } from '@crello/react-lottie';
+import successAnimation from './animations/success.json';
+import errorAnimation from './animations/error.json';
+import { Button } from '../../commons/Button';
+import TextField from '../../forms/TextField';
+import { Box } from '../../foundation/layout/Box';
+import { Grid } from '../../foundation/layout/Grid';
+import Text from '../../foundation/Text';
+
+const formStates = {
+  DEFAULT: 'DEFAULT',
+  LOADING: 'LOADING',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+};
 
 function FormContent() {
+  const [isFormSubmited, setIsFormSubmited] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
+
   const [userInfo, setUserInfo] = useState({
     user: 'testeuser',
-    email: 'testeemail'
-  })
+    name: 'Lucas Dias',
+  });
 
   function handleChange(e) {
-    const fieldName = e.target.getAttribute('name')
+    const fieldName = e.target.getAttribute('name');
     setUserInfo({
       ...userInfo,
-      [fieldName]: e.target.value
-    })
+      [fieldName]: e.target.value,
+    });
   }
 
-  const isFormInvalid = userInfo.user.length === 0 || userInfo.email.length === 0;
+  const isFormInvalid = userInfo.user.length === 0 || userInfo.name.length === 0;
 
   return (
     <form onSubmit={(e) => {
-      console.log("Enviado: ", userInfo)
-      e.preventDefault()
-    }}>
+      e.preventDefault();
+      setIsFormSubmited(true);
+      const userDTO = {
+        username: userInfo.user,
+        name: userInfo.name,
+      };
+
+      fetch('https://instalura-api.vercel.app/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userDTO),
+      })
+        .then((respServer) => {
+          if (respServer.ok) {
+            return respServer.json();
+          }
+          throw new Error('');
+        }).then((respSuccess) => {
+          setSubmissionStatus(formStates.DONE);
+          // eslint-disable-next-line no-console
+          console.log(respSuccess);
+        })
+        .catch((error) => {
+          setSubmissionStatus(formStates.ERROR);
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
+    }}
+    >
 
       <Text
         variant="title"
@@ -44,17 +86,17 @@ function FormContent() {
         Você está a um passo de saber tudoo que está
         rolando no bairro, complete seu cadastro agora!
       </Text>
-      
+
       <div>
-        <TextField 
-          placeholder="Email"
-          name="email"
-          value={userInfo.email}
-          onChange={handleChange}  
+        <TextField
+          placeholder="Name"
+          name="name"
+          value={userInfo.name}
+          onChange={handleChange}
         />
       </div>
       <div>
-        <TextField 
+        <TextField
           placeholder="Usuario"
           name="user"
           value={userInfo.user}
@@ -64,17 +106,49 @@ function FormContent() {
 
       <Button
         variant="primary.main"
-        type="submit" 
+        type="submit"
         disabled={isFormInvalid}
         fullWidth
       >
         Enviar
       </Button>
+
+      {isFormSubmited && submissionStatus === formStates.DONE && (
+        <Box>
+          <Lottie
+            width="150px"
+            height="150px"
+            config={{
+              animationData: successAnimation,
+              loop: true,
+              autoplay: true,
+            }}
+          />
+        </Box>
+      )}
+
+      {isFormSubmited && submissionStatus === formStates.ERROR && (
+      <Box
+        display="flex"
+        justifyContent="center"
+      >
+        <Lottie
+          width="150px"
+          height="150px"
+          config={{
+            animationData: errorAnimation,
+            loop: true,
+            autoplay: true,
+          }}
+        />
+      </Box>
+      )}
+
     </form>
-  )
+  );
 }
 
-export default function FormCadastro({propsDoModal}) {
+export default function FormCadastro({ propsDoModal }) {
   return (
     <Grid.Row
       marginLeft={0}

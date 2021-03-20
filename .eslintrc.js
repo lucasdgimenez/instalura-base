@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 module.exports = {
   env: {
     browser: true,
@@ -25,10 +24,5 @@ module.exports = {
     'react/jsx-indent': ['error', 2],
     'eol-last': 0,
     'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
-
-    'react/default-props-match-prop-types': [<enabled />, { allowRequiredDefaults: <boolean /> }],
-
   },
 };
-
-//  'react/require-default-props': [<enabled />, { forbidDefaultForRequired: <boolean>, ignoreFunctionalComponents: </boolean> }],
