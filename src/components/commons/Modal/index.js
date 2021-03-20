@@ -1,6 +1,7 @@
+import React from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import PropTypes from "prop-types"
-import {motion} from "framer-motion"
+import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 
 const ModalWrapper = styled.div`
   display: flex;
@@ -35,13 +36,13 @@ const LockScroll = createGlobalStyle`
   }
 `;
 
-function Modal({isOpen, onClose, children}) {
+function Modal({ isOpen, onClose, children }) {
   return (
-    <ModalWrapper 
+    <ModalWrapper
       isOpen={isOpen}
-      onClick={(event)=> {
+      onClick={(event) => {
         const isSafeArea = event.target.closest('[data-modal-safe-area="true"]');
-        if(!isSafeArea) {
+        if (!isSafeArea) {
           onClose();
         }
       }}
@@ -53,23 +54,24 @@ function Modal({isOpen, onClose, children}) {
             x: 0,
           },
           closed: {
-            x: '-100%'
-          }
+            x: '-100%',
+          },
         }}
         animate={isOpen ? 'open' : 'closed'}
         transition={{
           duration: 0.5,
-        }}  
+        }}
         style={{
           display: 'flex',
-          flex: 1
-      }}>
+          flex: 1,
+        }}
+      >
         {children({
           'data-modal-safe-area': 'true',
         })}
       </motion.div>
     </ModalWrapper>
-  )
+  );
 }
 
 Modal.propTypes = {

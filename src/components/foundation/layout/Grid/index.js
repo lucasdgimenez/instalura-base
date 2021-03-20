@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import styled, { css } from 'styled-components';
 import { breakpointsMedia } from '../../../../thema/utils/breakpointsMedia';
 import { propToStyle } from '../../../../thema/utils/propToStyle';
