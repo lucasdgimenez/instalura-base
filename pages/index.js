@@ -9,7 +9,7 @@ import Modal from '../src/components/commons/Modal';
 import FormCadastro from '../src/components/patterns/FormCadastro';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <Box
@@ -21,25 +21,17 @@ export default function Home() {
       backgroundRepeat="no-repeat"
       backgroundPosition="bottom right"
     >
-      <Modal 
+      <Modal
         isOpen={isModalOpen}
-        onClose={()=> {
-          setIsModalOpen(false)
+        onClose={() => {
+          setIsModalOpen(false);
         }}
       >
-        {(propsDoModal)=> (
-          <FormCadastro propsDoModal={propsDoModal}/>
-          /*<Box
-            backgroundColor="white"
-            {...propsDoModal}
-          >
-            <div>
-              Nosso conteudo do modal
-            </div>
-          </Box>*/
+        {(propsDoModal) => (
+          <FormCadastro propsDoModal={propsDoModal} />
         )}
       </Modal>
-      <Menu />
+      <Menu onCadastrarClick={() => setIsModalOpen(true)} />
 
       <Grid.Container
         marginTop={{
