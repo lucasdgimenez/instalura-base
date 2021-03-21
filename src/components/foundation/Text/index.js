@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import styled, { css } from 'styled-components';
 import { propToStyle } from '../../../thema/utils/propToStyle';
 import { breakpointsMedia } from '../../../thema/utils/breakpointsMedia';
-import { get } from 'lodash';
+import { Link } from '../../commons/Link';
 
 export const TextStyleVariantsMap = {
   paragraph1: css`
@@ -44,8 +45,21 @@ const TextBase = styled.span`
 `;
 
 export default function Text({
-  tag, variant, children, ...props
+  tag, variant, children, href, ...props
 }) {
+  if (href) {
+    return (
+      <TextBase
+        as={Link}
+        href={href}
+        variant={variant}
+        {...props}
+      >
+        {children}
+      </TextBase>
+    );
+  }
+
   return (
     <TextBase
       as={tag}
@@ -59,7 +73,8 @@ export default function Text({
 
 Text.propTypes = {
   tag: PropTypes.string,
-  variant: PropTypes.string.isRequired,
+  href: PropTypes.string,
+  variant: PropTypes.string,
   children: PropTypes.node,
 };
 // descricao das propriedades padrao, caso nao for passado nada em "as"
@@ -67,4 +82,5 @@ Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
   children: null,
+  href: '',
 };
