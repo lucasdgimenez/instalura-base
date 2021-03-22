@@ -14,7 +14,12 @@ export const WebsitePageContext = React.createContext({
   toggleModalCadastro: () => {},
 });
 
-export default function WebsitePageWrapper({ children, seoProps, pageBoxProps }) {
+export default function WebsitePageWrapper({
+  children,
+  seoProps,
+  pageBoxProps,
+  menuProps,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -43,7 +48,7 @@ export default function WebsitePageWrapper({ children, seoProps, pageBoxProps })
             <FormCadastro propsDoModal={propsDoModal} />
           )}
         </Modal>
-        <Menu onCadastrarClick={() => setIsModalOpen(true)} />
+        {menuProps.display && (<Menu onCadastrarClick={() => setIsModalOpen(true)} />)}
           {children}
         <Footer />
       </Box>
@@ -51,6 +56,25 @@ export default function WebsitePageWrapper({ children, seoProps, pageBoxProps })
   );
 }
 
+WebsitePageWrapper.defaultProps = {
+  seoProps: {},
+  pageBoxProps: {},
+  menuProps: {
+    display: true,
+  },
+};
+
 WebsitePageWrapper.propTypes = {
+  seoProps: PropTypes.shape({
+    headTitle: PropTypes.string,
+  }),
+  menuProps: PropTypes.shape({
+    display: PropTypes.bool,
+  }),
+  pageBoxProps: PropTypes.shape({
+    backgroundImage: PropTypes.string,
+    backgroundRepeat: PropTypes.string,
+    backgroundPosition: PropTypes.string,
+  }),
   children: PropTypes.node.isRequired,
 };

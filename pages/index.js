@@ -2,8 +2,9 @@ import React from 'react';
 import { Button } from '../src/components/commons/Button';
 import Text from '../src/components/foundation/Text';
 import { Grid } from '../src/components/foundation/layout/Grid';
-import WebsitePageWrapper, { WebsitePageContext } from '../src/components/wrappers/WebsitePage';
+import { WebsitePageContext } from '../src/components/wrappers/WebsitePage';
 import { Box } from '../src/components/foundation/layout/Box';
+import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
 function HomeScreen() {
   const websitePageContext = React.useContext(WebsitePageContext);
@@ -82,6 +83,20 @@ function HomeScreen() {
   );
 }
 
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});
+
+/*
 export default function Home() {
   return (
     <WebsitePageWrapper
@@ -98,3 +113,4 @@ export default function Home() {
     </WebsitePageWrapper>
   );
 }
+*/
