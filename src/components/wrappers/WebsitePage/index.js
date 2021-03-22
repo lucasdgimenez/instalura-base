@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-indent */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +14,7 @@ export const WebsitePageContext = React.createContext({
   toggleModalCadastro: () => {},
 });
 
-export default function WebsitePageWrapper({ children }) {
+export default function WebsitePageWrapper({ children, seoProps, pageBoxProps }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -24,15 +26,12 @@ export default function WebsitePageWrapper({ children }) {
       }}
     >
 
-      <SEO headtitle="Home" />
+      <SEO {...seoProps} />
       <Box
         flex={1}
         display="flex"
-        flexWrap="wrap"
         flexDirection="column"
-        backgroundImage="url(/images/bubbles.svg)"
-        backgroundRepeat="no-repeat"
-        backgroundPosition="bottom right"
+        {...pageBoxProps}
       >
         <Modal
           isOpen={isModalOpen}
