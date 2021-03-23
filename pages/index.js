@@ -50,7 +50,7 @@ function HomeScreen() {
                 textAlign: 'left',
               }}
             >
-              A nível organizacional, o desenvolvimento contínuo de distintas formas de atuação oferece uma interessante oportunidade para verificação de todos os recursos funcionais envolvidos.
+              A nível organizacional, o desenvolvimento contínuo de distintas formas de atuação oferece uma interessante oportunidade para verificação de todos os recursos envolvidos.
             </Text>
 
             <Button
