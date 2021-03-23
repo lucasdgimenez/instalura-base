@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 module.exports = {
   env: {
     browser: true,
@@ -25,5 +26,6 @@ module.exports = {
     'eol-last': 0,
     'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
     'no-console': 'off',
+    'max-len': ['error', { 'code': 2000 }],
   },
 };
