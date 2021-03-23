@@ -5,8 +5,8 @@ import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 function FAQInternaScreen({ category, question }) {
   return (
     <FAQQuestionScreen
-      question={question}
-      category={category}
+      question={question} 
+      category={category} 
     />
   );
 }
