@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { Button } from '../src/components/commons/Button';
 import Text from '../src/components/foundation/Text';
@@ -49,8 +50,7 @@ function HomeScreen() {
                 textAlign: 'left',
               }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
+              A nível organizacional, o desenvolvimento contínuo de distintas formas de atuação oferece uma interessante oportunidade para verificação de todos os recursos envolvidos.
             </Text>
 
             <Button
